@@ -22,6 +22,7 @@ const acceptedTypes = ['chamber of commerce', 'charity', 'city government', 'civ
 Factory.blueprint('App/Models/Student', (faker) => {
   return {
     'full_name': faker.name(),
+    'password': faker.password(),
     'mdcps_id': Math.abs(faker.integer({ min: 1000, max: 99999 })),
     'school_location_number': Math.abs(faker.integer({ min: 1000, max: 9999 })),
     'hours_done': Math.abs(faker.integer({ min: 100, max: 1000 })),
@@ -32,6 +33,8 @@ Factory.blueprint('App/Models/Student', (faker) => {
 
 Factory.blueprint('App/Models/Administrator', (faker) => {
   return {
+    'name': faker.name(),
+    'password': faker.password(),
     'mdcps_id': Math.abs(faker.integer({ min: 1000, max: 9999 })),
   }
 })
@@ -52,17 +55,4 @@ Factory.blueprint('App/Models/CsProject', (faker) => {
     'status': randomStatus,
   }
 })
-
-
-
-Factory.blueprint('App/Models/CsInstitution', (faker) => {
-  const randomOrg = acceptedTypes[  
-    Math.floor( Math.random() * acceptedTypes.length)
-  ]
-  return {
-    address: faker.address(),
-    'org_type': randomOrg
-  }
-})
-
 

@@ -9,6 +9,7 @@ class StudentsSchema extends Schema {
       table.increments()
       table.string('full_name', 80).notNullable()
       table.string('mdcps_id').unique().notNullable()    // string to preserve the 00's
+      table.string('password').notNullable()
       table.integer('school_location_number').notNullable() //7121 - jaf
       table.integer('admin_id').unsigned().notNullable()
       table.decimal('hours_done').notNullable()

@@ -29,7 +29,7 @@ class AppSeeder {
       const project = seedProjects[i];
       const randomNumber = Math.floor(Math.random() * (seedInstitutions.length)) // random integer between 0 and seedInstitutions.length
       const institution = seedInstitutions[randomNumber];
-      console.log(institution)
+      
       project['cs_institution_id'] = institution.id;
     }
 

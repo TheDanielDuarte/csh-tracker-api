@@ -4,9 +4,12 @@
 const Model = use('Model')
 
 class Student extends Model {
-
   static get table () {
     return 'students';
+  }
+
+  static get hidden () {
+    return ['password']
   }
 
   csProjects() {
