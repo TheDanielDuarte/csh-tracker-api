@@ -12,13 +12,13 @@
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
-const Database = use('Database')
+const CsInstitution = use('App/Models/CsInstitution')
 
-class StudentSeeder {
+class AppSeeder {
   async run () {
     const n = 79;
     const seedAdministrator = await Factory.model('App/Models/Administrator').create()
-    const seedInstitutions = await Factory.model('App/Models/CsInstitution').createMany(2 * n)
+    const { rows: seedInstitutions } = await CsInstitution.all()
     const seedStudents = await Factory.model('App/Models/Student').makeMany(n)
     const seedProjects = await Factory.model('App/Models/CsProject').makeMany(2 * n)
     const studentSeedPromises = seedStudents.map(student => seedAdministrator.students().save(student))
@@ -27,8 +27,9 @@ class StudentSeeder {
 
     for(let i = 0; i < seedProjects.length; i++) {
       const project = seedProjects[i];
-      const institution = seedInstitutions[i];
-
+      const randomNumber = Math.floor(Math.random() * (seedInstitutions.length)) // random integer between 0 and seedInstitutions.length
+      const institution = seedInstitutions[randomNumber];
+      console.log(institution)
       project['cs_institution_id'] = institution.id;
     }
 
@@ -44,4 +45,4 @@ class StudentSeeder {
   }
 }
 
-module.exports = StudentSeeder
+module.exports = AppSeeder

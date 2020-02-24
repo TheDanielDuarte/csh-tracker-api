@@ -19,3 +19,9 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+
+Route.get('/institutions', 'CsInstitutionController.index').middleware(['filterInstitutionsByDistance'])
+Route.get('/institutions/:id', 'CsInstitutionController.show').middleware(['findCsInstitution'])
+// Route.get('institutions', () => {
+//   return { greeting: 'miau' }
+// })

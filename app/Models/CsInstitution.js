@@ -4,6 +4,11 @@
 const Model = use('Model')
 
 class CsInstitution extends Model {
+  static boot () {
+    super.boot()
+    this.addTrait('FindDistance')
+  }
+
   static get table () {
     return 'cs_institutions'
   }
